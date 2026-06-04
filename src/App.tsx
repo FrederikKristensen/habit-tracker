@@ -1,0 +1,33 @@
+import React, { useState } from 'react';
+import Habitcard from './components/Habitcard';
+
+function App() {
+  const [habits, setHabits] = useState<string[]>([]);
+  const [input, setInput] = useState('');
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input.trim()) {
+      setHabits([...habits, input]);
+      setInput('');
+    }
+  };
+
+  return (
+    <>
+      <div>Habits</div>
+
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+        <button type="submit">Add</button>
+      </form>
+
+      <div>
+        <Habitcard />
+        <Habitcard />
+      </div>
+    </>
+  );
+}
+
+export default App;
