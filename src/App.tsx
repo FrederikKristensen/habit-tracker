@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Habitcard from './components/Habitcard';
+import './css/App.css';
 
 function App() {
   const [habits, setHabits] = useState<string[]>([]);
