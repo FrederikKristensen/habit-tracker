@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
-const Habitcard = () => {
+interface HabitcardProps {
+  name: string;
+}
+
+const Habitcard = ({ name }: HabitcardProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleCheck = () => {
@@ -12,7 +16,7 @@ const Habitcard = () => {
       <button onClick={toggleCheck}>
         {isChecked ? 'y' : 'O'}
       </button>
-      <div>habitcard</div>
+      <div>{name}</div>
     </div>
   );
 };

@@ -23,8 +23,9 @@ function App() {
       </form>
 
       <div>
-        <Habitcard />
-        <Habitcard />
+        {habits.map((habit, index) => (
+          <Habitcard key={index} name={habit} />
+        ))}
       </div>
     </>
   );
