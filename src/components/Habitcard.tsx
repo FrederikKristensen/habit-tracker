@@ -12,9 +12,11 @@ const Habitcard = ({ name }: HabitcardProps) => {
   };
 
   return (
-    <div className="flex items-center m-2 bg-mist-400">
-      <div className="mr-2 border-3 border-black size-9">
-        <button onClick={toggleCheck}>{isChecked ? 'y' : 'O'}</button>
+    <div className="flex items-center m-2 bg-mist-400 rounded-md">
+      <div className="mr-2 border-6 border-mist-950 rounded-4xl size-9 font-bold m-1">
+        <button className="w-full h-full" onClick={toggleCheck}>
+          {isChecked ? '✓' : ''}
+        </button>
       </div>
       <div>{name}</div>
     </div>
