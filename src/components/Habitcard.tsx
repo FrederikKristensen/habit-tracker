@@ -12,13 +12,24 @@ const Habitcard = ({ name }: HabitcardProps) => {
   };
 
   return (
-    <div className="flex items-center m-2 bg-mist-400 rounded-md">
-      <div className="mr-2 border-6 border-mist-950 rounded-4xl size-9 font-bold m-1">
+    <div className="flex items-center m-2 bg-mist-900 rounded-md pb-1.5">
+      <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-1">
         <button className="w-full h-full" onClick={toggleCheck}>
           {isChecked ? '✓' : ''}
         </button>
       </div>
-      <div>{name}</div>
+      <div className="flex items-start flex-col">
+        <div className="font-bold pb-0.5">{name}</div>
+        <div className="flex gap-4 text-xs pl-2">
+          <button className="p-1 border-2 border-white">Mon</button>
+          <button>Tues</button>
+          <button>Wed</button>
+          <button>Thur</button>
+          <button>Fri</button>
+          <button>Sat</button>
+          <button>Sun</button>
+        </div>
+      </div>
     </div>
   );
 };
