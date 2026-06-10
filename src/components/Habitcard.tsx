@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Daycards from './Daycards';
 
 interface HabitcardProps {
   name: string;
@@ -21,13 +22,7 @@ const Habitcard = ({ name }: HabitcardProps) => {
       <div className="flex items-start flex-col">
         <div className="font-bold pb-0.5">{name}</div>
         <div className="flex gap-4 text-xs pl-2">
-          <button className="p-1 border-2 border-white">Mon</button>
-          <button>Tues</button>
-          <button>Wed</button>
-          <button>Thur</button>
-          <button>Fri</button>
-          <button>Sat</button>
-          <button>Sun</button>
+          <Daycards day="Mon" />
         </div>
       </div>
     </div>
