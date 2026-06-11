@@ -7,6 +7,7 @@ interface HabitcardProps {
 
 const Habitcard = ({ name }: HabitcardProps) => {
   const [isChecked, setIsChecked] = useState(false);
+  const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
 
   const toggleCheck = () => {
     setIsChecked(!isChecked);
@@ -21,8 +22,10 @@ const Habitcard = ({ name }: HabitcardProps) => {
       </div>
       <div className="flex items-start flex-col">
         <div className="font-bold pb-0.5">{name}</div>
-        <div className="flex gap-4 text-xs pl-2">
-          <Daycards day="Mon" />
+        <div className="flex gap-1 text-xs pl-1">
+          {days.map((day, index) => (
+            <Daycards key={index} day={day} />
+          ))}
         </div>
       </div>
     </div>
