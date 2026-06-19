@@ -2,16 +2,46 @@ import React, { useState } from 'react';
 import Habitcard from './components/Habitcard';
 import './css/App.css';
 
+interface Habit {
+  id: string;
+  name: string;
+  selectedDays: Set<string>;
+}
+
 function App() {
-  const [habits, setHabits] = useState<string[]>([]);
+  const [habits, setHabits] = useState<Habit[]>([]);
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input.trim()) {
-      setHabits([...habits, input]);
+      setHabits([
+        ...habits,
+        {
+          id: Date.now().toString(),
+          name: input,
+          selectedDays: new Set(),
+        },
+      ]);
       setInput('');
     }
+  };
+
+  const toggleDay = (habitId: string, day: string) => {
+    setHabits(
+      habits.map((habit) => {
+        if (habit.id === habitId) {
+          const newSelectedDays = new Set(habit.selectedDays);
+          if (newSelectedDays.has(day)) {
+            newSelectedDays.delete(day);
+          } else {
+            newSelectedDays.add(day);
+          }
+          return { ...habit, selectedDays: newSelectedDays };
+        }
+        return habit;
+      })
+    );
   };
 
   return (
@@ -28,8 +58,8 @@ function App() {
       </div>
 
       <div className="text-white bg-mist-600 max-w-sm mx-auto p-0.5 m-3">
-        {habits.map((habit, index) => (
-          <Habitcard key={index} name={habit} />
+        {habits.map((habit) => (
+          <Habitcard key={habit.id} habit={habit} onToggleDay={toggleDay} />
         ))}
       </div>
     </>
