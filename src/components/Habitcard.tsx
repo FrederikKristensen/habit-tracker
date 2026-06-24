@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Daycards from './Daycards';
+import type { Habit } from '../App';
 
 interface HabitcardProps {
-  name: string;
+  habit: Habit;
+  onToggleDay: (habitId: string, day: string) => void;
 }
 
-const Habitcard = ({ name }: HabitcardProps) => {
+const Habitcard = ({ habit, onToggleDay }: HabitcardProps) => {
   const [isChecked, setIsChecked] = useState(false);
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
 
@@ -21,10 +23,15 @@ const Habitcard = ({ name }: HabitcardProps) => {
         </button>
       </div>
       <div className="flex items-start flex-col">
-        <div className="font-bold pb-0.5">{name}</div>
+        <div className="font-bold pb-0.5">{habit.name}</div>
         <div className="flex gap-1 text-xs pl-1">
-          {days.map((day, index) => (
-            <Daycards key={index} day={day} />
+          {days.map((day) => (
+            <Daycards
+              key={day}
+              day={day}
+              isSelected={habit.selectedDays.has(day)}
+              onToggle={() => onToggleDay(habit.id, day)}
+            />
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Habitcard from './components/Habitcard';
 import './css/App.css';
 
-interface Habit {
+export interface Habit {
   id: string;
   name: string;
   selectedDays: Set<string>;
