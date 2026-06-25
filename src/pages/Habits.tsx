@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Habitcard from '../components/Habitcard';
-import './css/App.css';
+import '../css/App.css';
 
 export interface Habit {
   id: string;
