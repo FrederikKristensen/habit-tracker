@@ -46,18 +46,24 @@ function App() {
 
   return (
     <>
-      <div className="text-white font-bold bg-mist-800 max-w-2xs mx-auto p-3 m-8  rounded-md">
+      <div className="max-w-2xs mx-auto text-white font-bold bg-mist-800  p-3 m-8  rounded-md">
         <button>Habits</button>
       </div>
 
-      <div className="text-white font-semibold bg-mist-700 max-w-xs mx-auto p-2">
-        <form onSubmit={handleSubmit}>
-          <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+      <div className="max-w-xs mx-auto p-3 bg-mist-700 rounded-lg">
+        <form onSubmit={handleSubmit} className="flex">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Add a habit..."
+            className="flex-1 text-white focus:outline-none"
+          />
           <button type="submit">Add</button>
         </form>
       </div>
 
-      <div className="text-white bg-mist-600 max-w-sm mx-auto p-0.5 m-3">
+      <div className="max-w-sm mx-auto p-0.5 m-3 bg-mist-600 text-white rounded-sm">
         {habits.map((habit) => (
           <Habitcard key={habit.id} habit={habit} onToggleDay={toggleDay} />
         ))}
