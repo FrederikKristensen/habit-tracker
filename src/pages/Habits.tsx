@@ -46,10 +46,6 @@ function Habits() {
 
   return (
     <>
-      <div className="max-w-2xs mx-auto text-white font-bold bg-mist-800  p-3 m-8  rounded-md">
-        <button>Habits</button>
-      </div>
-
       <div className="max-w-xs mx-auto p-3 bg-mist-700 rounded-lg">
         <form onSubmit={handleSubmit} className="flex">
           <input

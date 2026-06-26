@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Todos from './pages/todos';
-import Habits from './pages/habits';
+import Todos from './pages/Todos';
+import Habits from './pages/Habits';
 import Navbar from './components/Navbar';
 
 const App = () => {
