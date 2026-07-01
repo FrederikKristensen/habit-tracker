@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Daycards from './Daycards';
-import type { Habit } from '../App';
+import type { Habit } from '../pages/Habits';
 
 interface HabitcardProps {
   habit: Habit;

@@ -37,7 +37,7 @@ const Todos = () => {
         </form>
       </div>
 
-      <div>
+      <div className="max-w-sm mx-auto p-0.5 m-3 bg-mist-600 text-white rounded-sm">
         {todos.map((todo) => (
           <Todocard key={todo.id} todo={todo} />
         ))}
