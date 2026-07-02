@@ -13,8 +13,8 @@ const Todos = () => {
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input.trim()) {
-      setTodos([
-        ...todos,
+      setTodos((prev) => [
+        ...prev,
         {
           id: Date.now().toString(),
           name: input,
@@ -23,6 +23,11 @@ const Todos = () => {
       setInput('');
     }
   };
+
+  const removeTodo = (id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
   return (
     <>
       <div className="max-w-xs mx-auto p-3 bg-mist-700 rounded-lg">
@@ -39,7 +44,7 @@ const Todos = () => {
 
       <div className="max-w-sm mx-auto p-0.5 m-3 bg-mist-600 text-white rounded-sm">
         {todos.map((todo) => (
-          <Todocard key={todo.id} todo={todo} />
+          <Todocard key={todo.id} todo={todo} onRemove={removeTodo} />
         ))}
       </div>
     </>

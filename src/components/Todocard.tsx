@@ -3,13 +3,19 @@ import { useState } from 'react';
 
 interface Todocardprops {
   todo: Todo;
+  onRemove: (id: string) => void;
 }
 
-const Todocard = ({ todo }: Todocardprops) => {
+const Todocard = ({ todo, onRemove }: Todocardprops) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleCheck = () => {
-    setIsChecked(!isChecked);
+    const doneValue = !isChecked;
+    setIsChecked(doneValue);
+
+    if (doneValue) {
+      onRemove(todo.id);
+    }
   };
 
   return (
