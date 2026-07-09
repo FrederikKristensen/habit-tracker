@@ -43,6 +43,10 @@ function Habits() {
     );
   };
 
+  const removeHabit = (id: string) => {
+    setHabits((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
   return (
     <>
       <div className="max-w-xs mx-auto p-3 bg-mist-700 rounded-lg">
@@ -62,7 +66,7 @@ function Habits() {
 
       <div className="max-w-sm mx-auto p-0.5 m-3 bg-mist-600 text-white rounded-sm">
         {habits.map((habit) => (
-          <Habitcard key={habit.id} habit={habit} onToggleDay={toggleDay} />
+          <Habitcard key={habit.id} habit={habit} onToggleDay={toggleDay} onRemove={removeHabit} />
         ))}
       </div>
     </>
