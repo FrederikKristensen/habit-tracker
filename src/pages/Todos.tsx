@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Todocard from '../components/Todocard';
+import type { Habit } from './Habits';
+import Habitcard from '../components/Habitcard';
 
 export interface Todo {
   id: string;
   name: string;
+  completed: boolean;
 }
 
-const Todos = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+interface TodosProps {
+  habits: Habit[];
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  removeHabit: (id: string) => void;
+}
+
+const Todos = ({ habits, todos, setTodos, removeHabit }: TodosProps) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -18,6 +27,7 @@ const Todos = () => {
         {
           id: Date.now().toString(),
           name: input,
+          completed: false,
         },
       ]);
       setInput('');
@@ -45,6 +55,9 @@ const Todos = () => {
       <div className="max-w-sm mx-auto p-0.5 m-3 bg-mist-600 text-white rounded-sm">
         {todos.map((todo) => (
           <Todocard key={todo.id} todo={todo} onRemove={removeTodo} />
+        ))}
+        {habits.map((habit) => (
+          <Habitcard key={habit.id} habit={habit} onRemove={removeHabit} />
         ))}
       </div>
     </>

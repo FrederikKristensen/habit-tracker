@@ -5,10 +5,16 @@ export interface Habit {
   id: string;
   name: string;
   selectedDays: Set<string>;
+  completed: boolean;
 }
 
-function Habits() {
-  const [habits, setHabits] = useState<Habit[]>([]);
+interface HabitsProps {
+  habits: Habit[];
+  setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
+  removeHabit: (id: string) => void;
+}
+
+function Habits({ habits, setHabits, removeHabit }: HabitsProps) {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -20,6 +26,7 @@ function Habits() {
           id: Date.now().toString(),
           name: input,
           selectedDays: new Set(),
+          completed: false,
         },
       ]);
       setInput('');
@@ -41,10 +48,6 @@ function Habits() {
         return habit;
       })
     );
-  };
-
-  const removeHabit = (id: string) => {
-    setHabits((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   return (

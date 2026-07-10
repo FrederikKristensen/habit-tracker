@@ -3,7 +3,7 @@ import type { Habit } from '../pages/Habits';
 
 interface HabitcardProps {
   habit: Habit;
-  onToggleDay: (habitId: string, day: string) => void;
+  onToggleDay?: (habitId: string, day: string) => void;
   onRemove: (id: string) => void;
 }
 
@@ -24,7 +24,7 @@ const Habitcard = ({ habit, onToggleDay, onRemove }: HabitcardProps) => {
               key={day}
               day={day}
               isSelected={habit.selectedDays.has(day)}
-              onToggle={() => onToggleDay(habit.id, day)}
+              onToggle={() => onToggleDay?.(habit.id, day)}
             />
           ))}
         </div>
