@@ -41,14 +41,17 @@ const Todos = ({ habits, todos, setTodos, removeHabit }: TodosProps) => {
   return (
     <>
       <div className="max-w-xs mx-auto p-3 bg-mist-700 rounded-lg">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Add todo..."
+            className="flex-1 text-white focus:outline-none"
           />
-          <button type="submit">Add</button>
+          <button type="submit" className="text-white hover:text-mist-300">
+            Add
+          </button>
         </form>
       </div>
 
