@@ -14,6 +14,12 @@ function App() {
     setHabits((prev) => prev.filter((todo) => todo.id !== id));
   };
 
+  const toggleHabit = (id: string) => {
+    setHabits((prev) =>
+      prev.map((habit) => (habit.id === id ? { ...habit, completed: !habit.completed } : habit))
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -22,7 +28,13 @@ function App() {
         <Route
           path="/todos"
           element={
-            <Todos todos={todos} setTodos={setTodos} habits={habits} removeHabit={removeHabit} />
+            <Todos
+              todos={todos}
+              setTodos={setTodos}
+              habits={habits}
+              removeHabit={removeHabit}
+              toggleHabit={toggleHabit}
+            />
           }
         />
         <Route

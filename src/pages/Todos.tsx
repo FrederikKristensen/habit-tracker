@@ -9,14 +9,15 @@ export interface Todo {
   completed: boolean;
 }
 
-interface TodosProps {
+interface TaskProps {
   habits: Habit[];
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   removeHabit: (id: string) => void;
+  toggleHabit: (id: string) => void;
 }
 
-const Todos = ({ habits, todos, setTodos, removeHabit }: TodosProps) => {
+const Todos = ({ habits, todos, setTodos, removeHabit, toggleHabit }: TaskProps) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -60,7 +61,12 @@ const Todos = ({ habits, todos, setTodos, removeHabit }: TodosProps) => {
           <Todocard key={todo.id} todo={todo} onRemove={removeTodo} />
         ))}
         {habits.map((habit) => (
-          <Habitcard key={habit.id} habit={habit} onRemove={removeHabit} />
+          <Habitcard
+            key={habit.id}
+            habit={habit}
+            onRemove={removeHabit}
+            toggleHabit={toggleHabit}
+          />
         ))}
       </div>
     </>
