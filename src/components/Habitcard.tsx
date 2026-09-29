@@ -9,33 +9,33 @@ interface HabitcardProps {
 }
 
 const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps) => {
-  const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   const removeHabit = () => {
     onRemove(habit.id);
   };
 
   return (
-    <div className="flex relative items-center m-2 bg-mist-900 rounded-md pb-1.5">
-      <div className="flex items-start flex-col">
-        <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-1">
+    <div className="relative m-1.5 p-0.5 bg-mist-900 rounded-md pb-1.5">
+      <div className="flex items-center">
+        <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-2">
           {toggleHabit && (
             <button className="w-full h-full" onClick={() => toggleHabit(habit.id)}>
-              {habit.completed ? '✓' : ''}
+              {habit.completed ? '✓' : ' '}
             </button>
           )}
         </div>
         <div className="font-bold pb-0.5">{habit.name}</div>
-        <div className="flex gap-1 text-xs pl-1">
-          {days.map((day) => (
-            <Daycards
-              key={day}
-              day={day}
-              isSelected={habit.selectedDays.has(day)}
-              onToggle={() => onToggleDay?.(habit.id, day)}
-            />
-          ))}
-        </div>
+      </div>
+      <div className="flex gap-1.5 text-xs pl-2">
+        {days.map((day) => (
+          <Daycards
+            key={day}
+            day={day}
+            isSelected={habit.selectedDays.has(day)}
+            onToggle={() => onToggleDay?.(habit.id, day)}
+          />
+        ))}
       </div>
       <div>
         <button className="absolute top-1 right-2" onClick={removeHabit}>
