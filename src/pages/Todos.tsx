@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Todocard from '../components/Todocard';
 import type { Habit } from './Habits';
 import Habitcard from '../components/Habitcard';
-
+import { capitalize } from '../util/capitalize';
 export interface Todo {
   id: string;
   name: string;
@@ -21,16 +21,20 @@ const Todos = ({ habits, todos, setTodos, removeHabit, toggleHabit }: TaskProps)
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    // prevents reload on submit
     e.preventDefault();
+    // checks if input field is empty
     if (input.trim()) {
+      // Makes a new array with the previous state of todos and adds the new todo at the end
       setTodos((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
-          name: input,
+          name: capitalize(input),
           completed: false,
         },
       ]);
+      // empties the input field
       setInput('');
     }
   };

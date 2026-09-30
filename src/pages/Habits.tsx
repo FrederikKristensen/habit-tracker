@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Habitcard from '../components/Habitcard';
+import { capitalize } from '../util/capitalize';
 
 export interface Habit {
   id: string;
@@ -18,17 +19,21 @@ function Habits({ habits, setHabits, removeHabit }: HabitsProps) {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    // prevents reload on submit
     e.preventDefault();
+    // checks if input field is empty
     if (input.trim()) {
-      setHabits([
-        ...habits,
+      // Makes a new array with the previous state of todos and adds the new todo at the end
+      setHabits((prev) => [
+        ...prev,
         {
           id: Date.now().toString(),
-          name: input,
+          name: capitalize(input),
           selectedDays: new Set(),
           completed: false,
         },
       ]);
+      // empties the input field
       setInput('');
     }
   };
