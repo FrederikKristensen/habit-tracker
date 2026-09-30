@@ -1,5 +1,7 @@
 import Daycards from './Daycards';
 import type { Habit } from '../pages/Habits';
+import { useState } from 'react';
+import { cardToggleCheck } from '../util/cardToggleCheck';
 
 interface HabitcardProps {
   habit: Habit;
@@ -10,6 +12,7 @@ interface HabitcardProps {
 
 const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps) => {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const [isChecked, setIsChecked] = useState(false);
 
   const removeHabit = () => {
     onRemove(habit.id);
@@ -20,12 +23,15 @@ const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps
       <div className="flex items-center">
         <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-2">
           {toggleHabit && (
-            <button className="w-full h-full" onClick={() => toggleHabit(habit.id)}>
-              {habit.completed ? '✓' : ' '}
+            <button
+              className="w-full h-full"
+              onClick={() => cardToggleCheck(isChecked, setIsChecked)}
+            >
+              {isChecked ? '✓' : ' '}
             </button>
           )}
         </div>
-        <div className="font-bold pb-0.5">{habit.name}</div>
+        <div className={`font-bold pb-0.5 ${isChecked ? 'line-through' : ''}`}>{habit.name}</div>
       </div>
       <div className="flex gap-1.5 text-xs pl-2">
         {days.map((day) => (
