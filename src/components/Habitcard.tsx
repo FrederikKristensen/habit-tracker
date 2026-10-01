@@ -6,17 +6,13 @@ import { cardToggleCheck } from '../util/cardToggleCheck';
 interface HabitcardProps {
   habit: Habit;
   onToggleDay?: (habitId: string, day: string) => void;
-  onRemove: (id: string) => void;
+  onRemove?: (id: string) => void;
   toggleHabit?: (id: string) => void;
 }
 
 const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps) => {
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const [isChecked, setIsChecked] = useState(false);
-
-  const removeHabit = () => {
-    onRemove(habit.id);
-  };
 
   return (
     <div className="relative m-1.5 p-0.5 bg-mist-900 rounded-md pb-1.5">
@@ -44,9 +40,11 @@ const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps
         ))}
       </div>
       <div>
-        <button className="absolute top-1 right-2" onClick={removeHabit}>
-          X
-        </button>
+        {onRemove && (
+          <button className="absolute top-1 right-2" onClick={() => onRemove(habit.id)}>
+            X
+          </button>
+        )}
       </div>
     </div>
   );

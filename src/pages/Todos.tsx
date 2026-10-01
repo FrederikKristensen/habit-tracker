@@ -17,7 +17,7 @@ interface TaskProps {
   toggleHabit: (id: string) => void;
 }
 
-const Todos = ({ habits, todos, setTodos, removeHabit, toggleHabit }: TaskProps) => {
+const Todos = ({ habits, todos, setTodos, toggleHabit }: TaskProps) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -65,12 +65,7 @@ const Todos = ({ habits, todos, setTodos, removeHabit, toggleHabit }: TaskProps)
           <Todocard key={todo.id} todo={todo} onRemove={removeTodo} />
         ))}
         {habits.map((habit) => (
-          <Habitcard
-            key={habit.id}
-            habit={habit}
-            onRemove={removeHabit}
-            toggleHabit={toggleHabit}
-          />
+          <Habitcard key={habit.id} habit={habit} toggleHabit={toggleHabit} />
         ))}
       </div>
     </>
