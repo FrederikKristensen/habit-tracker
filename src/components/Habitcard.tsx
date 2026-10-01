@@ -17,10 +17,10 @@ const Habitcard = ({ habit, onToggleDay, onRemove, toggleHabit }: HabitcardProps
   return (
     <div className="relative m-1.5 p-0.5 bg-mist-900 rounded-md pb-1.5">
       <div className="flex items-center">
-        <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-2">
+        <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-1.5">
           {toggleHabit && (
             <button
-              className="w-full h-full"
+              className="w-full h-full cursor-pointer"
               onClick={() => cardToggleCheck(isChecked, setIsChecked)}
             >
               {isChecked ? '✓' : ' '}

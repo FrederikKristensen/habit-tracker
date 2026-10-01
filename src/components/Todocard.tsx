@@ -11,9 +11,12 @@ const Todocard = ({ todo }: Todocardprops) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="flex items-center m-2 bg-mist-900 rounded-md pb-1.5">
-      <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-1">
-        <button className="w-full h-full" onClick={() => cardToggleCheck(isChecked, setIsChecked)}>
+    <div className="flex items-center m-1.5 p-0.5 bg-mist-900 rounded-md pb-1.5">
+      <div className="mr-2 border-2 border-amber-600 rounded-4xl size-7 font-bold m-1.5">
+        <button
+          className="w-full h-full cursor-pointer"
+          onClick={() => cardToggleCheck(isChecked, setIsChecked)}
+        >
           {isChecked ? '✓' : ''}
         </button>
       </div>
